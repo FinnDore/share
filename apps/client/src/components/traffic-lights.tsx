@@ -1,12 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 // Literally just stolen from https://github.com/spacedriveapp/spacedrive/blob/main/interface/components/TrafficLights.tsx#L36
 
-import {
-  useEffect,
-  useRef,
-  type ComponentProps,
-  type HTMLAttributes,
-} from "react";
+import { useMemo, type ComponentProps, type HTMLAttributes } from "react";
 import clsx from "clsx";
 
 import { useFocusState } from "~/hooks/use-focus-state";
@@ -53,19 +48,14 @@ interface TrafficLightProps {
 
 function TrafficLight(props: TrafficLightProps) {
   const { onClick = () => undefined, colorful = false, type } = props;
-  const iconPath = useRef<string>("");
-
-  useEffect(() => {
+  const iconPath = useMemo(() => {
     switch (type) {
       case "close":
-        iconPath.current = "macos_close.svg";
-        break;
+        return "macos_close.svg";
       case "minimize":
-        iconPath.current = "macos_minimize.svg";
-        break;
+        return "macos_minimize.svg";
       case "fullscreen":
-        iconPath.current = "macos_fullscreen.svg";
-        break;
+        return "macos_fullscreen.svg";
     }
   }, [type]);
 
@@ -88,7 +78,7 @@ function TrafficLight(props: TrafficLightProps) {
       )}
     >
       <img
-        src={`/${iconPath.current}`}
+        src={`/${iconPath}`}
         alt={`${type} icon`}
         className="pointer-events-none opacity-0 group-hover:opacity-100 group-active:opacity-100"
       />
