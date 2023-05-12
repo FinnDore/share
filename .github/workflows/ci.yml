@@ -15,10 +15,12 @@ env:
 
 jobs:
   build-lint:
-    env:
-      DATABASE_URL: file:./db.sqlite
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [macos-latest, ubuntu-20.04, windows-latest]
 
+    runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -47,10 +49,14 @@ jobs:
       - name: Install deps (with cache)
         run: pnpm install
 
-      # Normally, this would be done as part of the turbo pipeline - however since the Expo app doesn't depend on `@acme/db` it doesn't care.
-      # TODO: Free for all to find a better solution here.
-      - name: Generate Prisma Client
-        run: pnpm turbo db:generate
+      - name: install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: install dependencies (ubuntu only)
+        if: matrix.platform == 'ubuntu-20.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
 
       - name: Build, lint and type-check
         run: pnpm turbo build lint type-check
