@@ -7,8 +7,11 @@
       "cache": false
     },
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["out/**"]
+      "dependsOn": [],
+      "outputs": ["apps/client/out/**"]
+    },
+    "@k/src-tauri#build": {
+      "dependsOn": ["@k/client#build"]
     },
     "lint": {},
     "lint:fix": {},
