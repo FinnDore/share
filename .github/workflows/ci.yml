@@ -20,7 +20,12 @@ jobs:
       matrix:
         platform: [macos-latest, ubuntu-20.04, windows-latest]
 
+    defaults:
+      run:
+        shell: bash 
+    
     runs-on: ${{ matrix.platform }}
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
