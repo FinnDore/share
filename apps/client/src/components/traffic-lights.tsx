@@ -1,39 +1,43 @@
+'use client';
+
+/* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @next/next/no-img-element */
 // Literally just stolen from https://github.com/spacedriveapp/spacedrive/blob/main/interface/components/TrafficLights.tsx#L36
-
-import { useMemo, type ComponentProps, type HTMLAttributes } from 'react';
+import { useMemo, type HTMLAttributes } from 'react';
 import clsx from 'clsx';
 
 import { useFocusState } from '~/hooks/use-focus-state';
+import { window } from '~/lazy-tauri-api/get-current';
 
-export interface TrafficLightsProps extends ComponentProps<'div'> {
-    onClose?: () => void;
-    onMinimize?: () => void;
-    onFullscreen?: () => void;
-}
-
-export function MacTrafficLights(props: TrafficLightsProps) {
-    const { onClose, onMinimize, onFullscreen, className } = props;
+export default function MacTrafficLights(props: { className?: string }) {
     const [focused] = useFocusState();
 
     return (
         <div
             data-tauri-drag-region
-            className={clsx('group flex flex-row space-x-[7.5px]', className)}
+            className={clsx(
+                'group flex flex-row space-x-[7.5px]',
+                props.className,
+            )}
         >
             <TrafficLight
                 type="close"
-                onClick={onClose}
+                onClick={async () => await window.closeCurrentWindow()}
                 colorful={focused ?? false}
             />
             <TrafficLight
                 type="minimize"
-                onClick={onMinimize}
+                onClick={async () => await window.minimizeCurrentWindow()}
                 colorful={focused ?? false}
             />
             <TrafficLight
                 type="fullscreen"
-                onClick={onFullscreen}
+                onClick={async () => {
+                    const currentWindow = await window.getCurrentWindow();
+                    void currentWindow.setFullscreen(
+                        !(await currentWindow.isFullscreen()),
+                    );
+                }}
                 colorful={focused ?? false}
             />
         </div>
@@ -52,6 +56,7 @@ function TrafficLight(props: TrafficLightProps) {
         switch (type) {
             case 'close':
                 return 'macos_close.svg';
+
             case 'minimize':
                 return 'macos_minimize.svg';
             case 'fullscreen':

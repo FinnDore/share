@@ -1,6 +1,8 @@
+'use client';
+
 import type { NextPage } from 'next';
 
-import { MacTrafficLights } from '~/components/traffic-lights';
+import MacTrafficLights from '~/components/traffic-lights';
 
 const Home: NextPage = () => {
     return (

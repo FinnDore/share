@@ -11,6 +11,9 @@ const config = {
     eslint: { ignoreDuringBuilds: !!process.env.CI },
     typescript: { ignoreBuildErrors: !!process.env.CI },
     output: 'export',
+    experimental: {
+        appDir: true,
+    },
 };
 
 export default config;
