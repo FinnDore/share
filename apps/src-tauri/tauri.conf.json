@@ -17,7 +17,9 @@
                 "open": true
             },
             "window": {
-                "all": true
+                "setFullscreen": true,
+                "minimize": true,
+                "close": true
             }
         },
         "bundle": {

@@ -5,23 +5,18 @@ export const importGetCurrent = async () => {
 
 export const window = {
     async closeCurrentWindow() {
-        const current = await importGetCurrent();
-        return current.close();
+        return (await importGetCurrent()).close();
     },
     async maximizeCurrentWindow() {
-        const current = await importGetCurrent();
-        return current.maximize();
+        return (await importGetCurrent()).maximize();
     },
     async minimizeCurrentWindow() {
-        const current = await importGetCurrent();
-        return current.minimize();
+        return (await importGetCurrent()).minimize();
     },
     async isCurrentWindowFullscreen() {
-        const current = await importGetCurrent();
-        return current.isFullscreen();
+        return (await importGetCurrent()).isFullscreen();
     },
     async getCurrentWindow() {
-        const current = await importGetCurrent();
-        return current;
+        return await importGetCurrent();
     },
 };
