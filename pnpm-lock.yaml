@@ -10,7 +10,7 @@ importers:
       '@manypkg/cli':
         specifier: ^0.20.0
         version: 0.20.0
-      '@send/eslint-config':
+      '@share/eslint-config':
         specifier: ^0.1.0
         version: link:packages/config/eslint
       '@types/prettier':
@@ -34,7 +34,7 @@ importers:
 
   apps/client:
     dependencies:
-      '@send/tailwind-config':
+      '@share/tailwind-config':
         specifier: ^0.1.0
         version: link:../../packages/config/tailwind
       '@t3-oss/env-nextjs':
@@ -65,7 +65,7 @@ importers:
         specifier: ^3.21.4
         version: 3.21.4
     devDependencies:
-      '@send/eslint-config':
+      '@share/eslint-config':
         specifier: ^0.1.0
         version: link:../../packages/config/eslint
       '@types/node':

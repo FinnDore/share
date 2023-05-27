@@ -1,5 +1,5 @@
 {
-    "name": "@send/eslint-config",
+    "name": "@share/eslint-config",
     "version": "0.1.0",
     "main": "index.js",
     "license": "MIT",
