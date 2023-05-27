@@ -22,7 +22,7 @@ const config = {
         '^(expo(.*)$)|^(expo$)',
         '<THIRD_PARTY_MODULES>',
         '',
-        '^@acme/(.*)$',
+        '^@send/(.*)$',
         '',
         '^~/utils/(.*)$',
         '^~/components/(.*)$',

@@ -4,15 +4,15 @@ importers:
 
   .:
     dependencies:
-      '@acme/eslint-config':
-        specifier: ^0.1.0
-        version: link:packages/config/eslint
       '@ianvs/prettier-plugin-sort-imports':
         specifier: ^3.7.2
         version: 3.7.2(prettier@2.8.8)
       '@manypkg/cli':
         specifier: ^0.20.0
         version: 0.20.0
+      '@send/eslint-config':
+        specifier: ^0.1.0
+        version: link:packages/config/eslint
       '@types/prettier':
         specifier: ^2.7.2
         version: 2.7.2
@@ -34,7 +34,7 @@ importers:
 
   apps/client:
     dependencies:
-      '@acme/tailwind-config':
+      '@send/tailwind-config':
         specifier: ^0.1.0
         version: link:../../packages/config/tailwind
       '@t3-oss/env-nextjs':
@@ -65,7 +65,7 @@ importers:
         specifier: ^3.21.4
         version: 3.21.4
     devDependencies:
-      '@acme/eslint-config':
+      '@send/eslint-config':
         specifier: ^0.1.0
         version: link:../../packages/config/eslint
       '@types/node':

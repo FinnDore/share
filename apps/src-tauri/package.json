@@ -1,5 +1,5 @@
 {
-    "name": "@k/src-tauri",
+    "name": "@send/src-tauri",
     "version": "0.1.0",
     "private": true,
     "scripts": {
